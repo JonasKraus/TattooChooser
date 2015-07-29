@@ -1,0 +1,9 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/rect_background_orange_actionbar" />
+
+    <item android:bottom="3dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#F59E1C" />
+        </shape>
+    </item>
+</layer-list>
