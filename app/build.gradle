@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "de.jonas_kraus.tattoochooser"
-        minSdkVersion 13
+        minSdkVersion 14
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"

@@ -33,7 +33,7 @@ import de.jonas_kraus.tattoochooser.util.ImageProcessor;
 
 public class MainActivity extends Activity {
 
-    Button downloadButton, playButton;
+    Button downloadButton, playButton, viewButton;
     ImageView img;
     AnimationDrawable frameAnimation;
     Vibrator vibrator;
@@ -85,6 +85,15 @@ public class MainActivity extends Activity {
         });
     }
 
+    public void addImageClickListener() {
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                frameAnimation.start();
+            }
+        });
+    }
+
     public void addDownloadButtonlistener() {
         downloadButton = (Button) findViewById(R.id.downloadButton);
         downloadButton.setOnClickListener(new View.OnClickListener() {
@@ -118,8 +127,8 @@ public class MainActivity extends Activity {
         });
     }
     public void addViewButtonlistener() {
-        playButton = (Button) findViewById(R.id.viewButton);
-        playButton.setOnClickListener(new View.OnClickListener() {
+        viewButton = (Button) findViewById(R.id.viewButton);
+        viewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 vibrator.vibrate(50);
@@ -168,7 +177,7 @@ public class MainActivity extends Activity {
     private Intent setUpShareIntent() {
         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
-        String shareBody = "I think you may be interested in this funny tattoo choosing app";
+        String shareBody = "I think you might be interested in this funny tattoo choosing app";
         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "The amazing TattooChooser App");
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
         //startActivity(Intent.createChooser(sharingIntent, "Share via"));
@@ -180,8 +189,9 @@ public class MainActivity extends Activity {
         super.onResume();
         addDownloadButtonlistener();
         addPlayButtonlistener();
-        addLongImageClickListener();
         addViewButtonlistener();
+        addLongImageClickListener();
+        addImageClickListener();
         setShareIntent(setUpShareIntent());
     }
 
@@ -190,7 +200,9 @@ public class MainActivity extends Activity {
         super.onPause();
         downloadButton.setOnClickListener(null);
         playButton.setOnClickListener(null);
+        viewButton.setOnClickListener(null);
         img.setOnClickListener(null);
+        img.setOnLongClickListener(null);
     }
 
     private byte[] getByteArrayFromBitmap(Bitmap bitmap) {
