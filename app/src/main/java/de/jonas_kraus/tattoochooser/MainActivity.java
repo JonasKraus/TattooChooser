@@ -67,8 +67,8 @@ public class MainActivity extends Activity {
                 time += rand.nextInt(3678-2123)+2123;
                 Log.d("Timer", "Going for... " + time);
                 h.postDelayed(this, time);
+                time = 0;
                 frameAnimation.stop();
-                Toast.makeText(context, "Long press on Image to view larger", Toast.LENGTH_SHORT);
             }
         }, 0);
 
